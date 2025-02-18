@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM Societies');
-        res.render('index', { societies: result.rows });
+        res.render('index', { societies: result.rows, society: null });
     } catch (error) {
         console.error(error);
         res.send("Error retrieving societies");
