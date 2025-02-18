@@ -10,16 +10,16 @@
 
     <h2>Add New Society</h2>
     <form action="/add-society" method="POST">
-        <input type="text" name="society_name" placeholder="Society Name" required><br><br>
-        <input type="date" name="start_date" required><br><br>
-        <input type="date" name="end_date" required><br><br>
-        <input type="number" step="0.01" name="rent_per_screen" placeholder="Rent per Screen" required><br><br>
-        <input type="number" name="no_of_screens" placeholder="No. of Screens" required><br><br>
-        <input type="text" name="city" placeholder="City" required><br><br>
-        <input type="text" name="chairman_name" placeholder="Chairman Name" required><br><br>
-        <input type="text" name="chairman_contact" placeholder="Chairman Contact" required><br><br>
-        <input type="text" name="secretary_name" placeholder="Secretary Name" required><br><br>
-        <input type="text" name="secretary_contact" placeholder="Secretary Contact" required><br><br>
+        <input type="text" name="society_name" placeholder="Society Name" ><br><br>
+        <input type="date" name="start_date" ><br><br>
+        <input type="date" name="end_date" ><br><br>
+        <input type="number" step="0.01" name="rent_per_screen" placeholder="Rent per Screen" ><br><br>
+        <input type="number" name="no_of_screens" placeholder="No. of Screens" ><br><br>
+        <input type="text" name="city" placeholder="City" ><br><br>
+        <input type="text" name="chairman_name" placeholder="Chairman Name" ><br><br>
+        <input type="text" name="chairman_contact" placeholder="Chairman Contact" ><br><br>
+        <input type="text" name="secretary_name" placeholder="Secretary Name" ><br><br>
+        <input type="text" name="secretary_contact" placeholder="Secretary Contact" ><br><br>
         <textarea name="remark" placeholder="Remarks"></textarea><br><br>
         <button type="submit">Add Society</button>
     </form>
@@ -64,16 +64,16 @@
         <h2>Edit Society</h2>
         <form action="/update-society" method="POST">
             <input type="hidden" name="id" value="<%= society.id %>">
-            <input type="text" name="society_name" value="<%= society.society_name %>" required><br><br>
-            <input type="date" name="start_date" value="<%= society.start_date %>" required><br><br>
-            <input type="date" name="end_date" value="<%= society.end_date %>" required><br><br>
-            <input type="number" step="0.01" name="rent_per_screen" value="<%= society.rent_per_screen %>" required><br><br>
-            <input type="number" name="no_of_screens" value="<%= society.no_of_screens %>" required><br><br>
-            <input type="text" name="city" value="<%= society.city %>" required><br><br>
-            <input type="text" name="chairman_name" value="<%= society.chairman_name %>" required><br><br>
-            <input type="text" name="chairman_contact" value="<%= society.chairman_contact %>" required><br><br>
-            <input type="text" name="secretary_name" value="<%= society.secretary_name %>" required><br><br>
-            <input type="text" name="secretary_contact" value="<%= society.secretary_contact %>" required><br><br>
+            <input type="text" name="society_name" value="<%= society.society_name %>" ><br><br>
+            <input type="date" name="start_date" value="<%= society.start_date %>" ><br><br>
+            <input type="date" name="end_date" value="<%= society.end_date %>" ><br><br>
+            <input type="number" step="0.01" name="rent_per_screen" value="<%= society.rent_per_screen %>" ><br><br>
+            <input type="number" name="no_of_screens" value="<%= society.no_of_screens %>" ><br><br>
+            <input type="text" name="city" value="<%= society.city %>" ><br><br>
+            <input type="text" name="chairman_name" value="<%= society.chairman_name %>" ><br><br>
+            <input type="text" name="chairman_contact" value="<%= society.chairman_contact %>" ><br><br>
+            <input type="text" name="secretary_name" value="<%= society.secretary_name %>" ><br><br>
+            <input type="text" name="secretary_contact" value="<%= society.secretary_contact %>" ><br><br>
             <textarea name="remark"><%= society.remark %></textarea><br><br>
             <button type="submit">Update Society</button>
         </form>
