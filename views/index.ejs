@@ -109,8 +109,13 @@
     </form>
     
 
-    <h2>Societies List</h2>
-    <table border="1">
+
+    <h2 style="display: inline-block;">Societies List</h2>
+    <button id="exportExcel" style="float: right; background: #28a745; color: rgb(63, 74, 233); padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">
+        Export to Excel
+    </button>
+    
+    <table id="societiesTable">
         <thead>
             <tr>
                 <th>Society Name</th>
@@ -122,7 +127,6 @@
                 <th>City</th>
                 <th>Chairman</th>
                 <th>Secretary</th>
-                <th>Remarks</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -138,7 +142,6 @@
                     <td><%= society.city %></td>
                     <td><%= society.chairman_name %></td>
                     <td><%= society.secretary_name %></td>
-                    <td><%= society.remark %></td>
                     <td>
                         <a href="/edit/<%= society.id %>">Edit</a>
                     </td>
@@ -146,6 +149,20 @@
             <% }); %>
         </tbody>
     </table>
+    
+    <!-- Include SheetJS for exporting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <script>
+    document.getElementById('exportExcel').addEventListener('click', function () {
+        let table = document.getElementById('societiesTable');
+        let worksheet = XLSX.utils.table_to_sheet(table);
+        let workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Societies');
+        XLSX.writeFile(workbook, 'Societies_List.xlsx');
+    });
+    </script>
+    
 
     <% if (society) { %>
         <h2>Edit Society</h2>
