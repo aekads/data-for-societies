@@ -133,8 +133,9 @@
         <% societies.forEach(society => { %>
             <tr>
                 <td><%= society.society_name %></td>
-                <td><%= society.start_date %></td>
-                <td><%= society.end_date %></td>
+                <td><%= new Date(society.start_date).toISOString().split('T')[0] %></td>
+<td><%= new Date(society.end_date).toISOString().split('T')[0] %></td>
+
                 <td><%= society.rent_per_screen %></td>
                 <td><%= society.no_of_screens %></td>
                 <td><%= society.total_rent %></td>
