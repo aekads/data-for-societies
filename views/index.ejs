@@ -108,61 +108,61 @@
         <button type="submit">Add Society</button>
     </form>
     
+<h2 style="display: inline-block;">Societies List</h2>
+<button id="exportExcel" style="float: right; background: #28a745; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">
+    Export to Excel
+</button>
 
-
-    <h2 style="display: inline-block;">Societies List</h2>
-    <button id="exportExcel" style="float: right; background: #28a745; color: rgb(63, 74, 233); padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">
-        Export to Excel
-    </button>
-    
-    <table id="societiesTable">
-        <thead>
+<table id="societiesTable">
+    <thead>
+        <tr>
+            <th>Society Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Rent per Screen</th>
+            <th>No. of Screens</th>
+            <th>Total Rent</th>
+            <th>City</th>
+            <th>Chairman</th>
+            <th>Secretary</th>
+                <th>Remarks</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% societies.forEach(society => { %>
             <tr>
-                <th>Society Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Rent per Screen</th>
-                <th>No. of Screens</th>
-                <th>Total Rent</th>
-                <th>City</th>
-                <th>Chairman</th>
-                <th>Secretary</th>
-                <th>Actions</th>
+                <td><%= society.society_name %></td>
+                <td><%= society.start_date %></td>
+                <td><%= society.end_date %></td>
+                <td><%= society.rent_per_screen %></td>
+                <td><%= society.no_of_screens %></td>
+                <td><%= society.total_rent %></td>
+                <td><%= society.city %></td>
+                <td><%= society.chairman_name %></td>
+                <td><%= society.secretary_name %></td>
+                    <td><%= society.remark %></td>
+                <td>
+                    <a href="/edit/<%= society.id %>">Edit</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <% societies.forEach(society => { %>
-                <tr>
-                    <td><%= society.society_name %></td>
-                    <td><%= society.start_date %></td>
-                    <td><%= society.end_date %></td>
-                    <td><%= society.rent_per_screen %></td>
-                    <td><%= society.no_of_screens %></td>
-                    <td><%= society.total_rent %></td>
-                    <td><%= society.city %></td>
-                    <td><%= society.chairman_name %></td>
-                    <td><%= society.secretary_name %></td>
-                    <td>
-                        <a href="/edit/<%= society.id %>">Edit</a>
-                    </td>
-                </tr>
-            <% }); %>
-        </tbody>
-    </table>
-    
-    <!-- Include SheetJS for exporting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    
-    <script>
-    document.getElementById('exportExcel').addEventListener('click', function () {
-        let table = document.getElementById('societiesTable');
-        let worksheet = XLSX.utils.table_to_sheet(table);
-        let workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Societies');
-        XLSX.writeFile(workbook, 'Societies_List.xlsx');
-    });
-    </script>
-    
+        <% }); %>
+    </tbody>
+</table>
+
+<!-- Include SheetJS for exporting -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script>
+document.getElementById('exportExcel').addEventListener('click', function () {
+    let table = document.getElementById('societiesTable');
+    let worksheet = XLSX.utils.table_to_sheet(table);
+    let workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Societies');
+    XLSX.writeFile(workbook, 'Societies_List.xlsx');
+});
+</script>
+
 
     <% if (society) { %>
         <h2>Edit Society</h2>
