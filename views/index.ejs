@@ -101,7 +101,10 @@
     
         <label for="secretary_contact">Secretary Contact:</label>
         <input type="text" id="secretary_contact" name="secretary_contact" placeholder="Secretary Contact" required><br><br>
-    
+
+<label for="pdf_url">PDF URL:</label>
+<input type="text" id="pdf_url" name="pdf_url" placeholder="PDF URL"><br><br>
+
         <label for="remark">Remarks:</label>
         <textarea id="remark" name="remark" placeholder="Remarks"></textarea><br><br>
     
@@ -125,6 +128,7 @@
             <th>City</th>
             <th>Chairman</th>
             <th>Secretary</th>
+<th>PDF</th>
                 <th>Remarks</th>
             <th>Actions</th>
         </tr>
@@ -142,6 +146,13 @@
                 <td><%= society.city %></td>
                 <td><%= society.chairman_name %></td>
                 <td><%= society.secretary_name %></td>
+<td>
+  <% if (society.pdf_url) { %>
+    <a href="<%= society.pdf_url %>" target="_blank">View PDF</a>
+  <% } else { %>
+    N/A
+  <% } %>
+</td>
                     <td><%= society.remark %></td>
                 <td>
                     <a href="/edit/<%= society.id %>">Edit</a>
@@ -179,6 +190,9 @@ document.getElementById('exportExcel').addEventListener('click', function () {
             <input type="text" name="chairman_contact" value="<%= society.chairman_contact %>" ><br><br>
             <input type="text" name="secretary_name" value="<%= society.secretary_name %>" ><br><br>
             <input type="text" name="secretary_contact" value="<%= society.secretary_contact %>" ><br><br>
+
+<input type="text" name="pdf_url" value="<%= society.pdf_url %>" ><br><br>
+
             <textarea name="remark"><%= society.remark %></textarea><br><br>
             <button type="submit">Update Society</button>
         </form>
