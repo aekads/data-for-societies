@@ -2,15 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const path = require('path');
-require('dotenv').config();
+
 
 const app = express();
 const port = 3000;
 
-// PostgreSQL setup
+// Database connection setup
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
+  user: 'u3m7grklvtlo6',
+  host: '35.209.89.182',
+  database: 'dbzvtfeophlfnr',
+  password: 'AekAds@24',
+  port: 5432,
 });
+
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
