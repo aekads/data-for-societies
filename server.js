@@ -42,16 +42,17 @@ app.post('/add-society', async (req, res) => {
         secretary_name,
         secretary_contact,
         remark,
+        pdf_url
     } = req.body;
 
     try {
         await pool.query(
             `INSERT INTO Societies (society_name, start_date, end_date, rent_per_screen, 
             no_of_screens, city, chairman_name, chairman_contact, secretary_name, 
-            secretary_contact, remark)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
-            [society_name, start_date, end_date, rent_per_screen, no_of_screens, city, chairman_name, 
-            chairman_contact, secretary_name, secretary_contact, remark]
+            secretary_contact, remark, pdf_url)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+            [society_name, start_date, end_date, rent_per_screen, no_of_screens, city,
+            chairman_name, chairman_contact, secretary_name, secretary_contact, remark, pdf_url]
         );
         res.redirect('/');
     } catch (error) {
@@ -59,6 +60,7 @@ app.post('/add-society', async (req, res) => {
         res.send("Error adding society");
     }
 });
+
 
 // Route to edit a society
 app.get('/edit/:id', async (req, res) => {
@@ -75,9 +77,19 @@ app.get('/edit/:id', async (req, res) => {
 // Route to update society
 app.post('/update-society', async (req, res) => {
     const {
-        id, society_name, start_date, end_date, rent_per_screen, 
-        no_of_screens, city, chairman_name, chairman_contact, 
-        secretary_name, secretary_contact, remark
+        id,
+        society_name,
+        start_date,
+        end_date,
+        rent_per_screen,
+        no_of_screens,
+        city,
+        chairman_name,
+        chairman_contact,
+        secretary_name,
+        secretary_contact,
+        remark,
+        pdf_url
     } = req.body;
 
     try {
@@ -85,9 +97,9 @@ app.post('/update-society', async (req, res) => {
             `UPDATE Societies SET society_name = $1, start_date = $2, end_date = $3, 
             rent_per_screen = $4, no_of_screens = $5, city = $6, chairman_name = $7, 
             chairman_contact = $8, secretary_name = $9, secretary_contact = $10, 
-            remark = $11 WHERE id = $12`,
-            [society_name, start_date, end_date, rent_per_screen, no_of_screens, city, 
-            chairman_name, chairman_contact, secretary_name, secretary_contact, remark, id]
+            remark = $11, pdf_url = $12 WHERE id = $13`,
+            [society_name, start_date, end_date, rent_per_screen, no_of_screens, city,
+            chairman_name, chairman_contact, secretary_name, secretary_contact, remark, pdf_url, id]
         );
         res.redirect('/');
     } catch (error) {
@@ -95,6 +107,7 @@ app.post('/update-society', async (req, res) => {
         res.send("Error updating society");
     }
 });
+
 
 // Start the server
 app.listen(port, () => {
